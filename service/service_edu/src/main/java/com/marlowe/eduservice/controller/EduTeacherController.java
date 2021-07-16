@@ -1,6 +1,9 @@
 package com.marlowe.eduservice.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.marlowe.commonutils.R;
 import com.marlowe.eduservice.entity.EduTeacher;
 import com.marlowe.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
@@ -31,17 +34,49 @@ public class EduTeacherController {
      *
      * @return
      */
-    @GetMapping("findAll")
     @ApiOperation("查找所有讲师")
-    public List<EduTeacher> findAllTeacher() {
+    @GetMapping("findAll")
+    public R findAllTeacher() {
         List<EduTeacher> list = teacherService.list(null);
-        return list;
+        return R.ok().data("items", list);
     }
 
+    /**
+     * 根据id逻辑删除讲师
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("根据id逻辑删除讲师")
     @DeleteMapping("{id}")
-    public boolean removeTeacher(@PathVariable String id) {
+    public R removeTeacher(@PathVariable String id) {
         boolean flag = teacherService.removeById(id);
-        return flag;
+        if (flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
+
+
+    /**
+     * 分页查询讲师
+     *
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @ApiOperation("分页查询讲师")
+    @GetMapping("pageTeacher/{pageNo}/{pageSize}")
+    public R pageListTeacher(@PathVariable long pageNo, @PathVariable long pageSize) {
+
+        // 创建一个page对线
+        Page<EduTeacher> pageTeacher = new Page<>(pageNo, pageSize);
+        teacherService.page(pageTeacher, null);
+
+        long total = pageTeacher.getTotal();
+        List<EduTeacher> records = pageTeacher.getRecords();
+        return R.ok().data("total", total).data("rows", records);
     }
 
 }

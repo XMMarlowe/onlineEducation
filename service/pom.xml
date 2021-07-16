@@ -17,6 +17,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.marlowe</groupId>
+            <artifactId>service_base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
 
         <!--<dependency>

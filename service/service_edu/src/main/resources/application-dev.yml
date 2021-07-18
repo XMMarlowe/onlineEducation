@@ -3,9 +3,9 @@ server:
 
 mybatis-plus:
   mapper-locations: classpath:com/marlowe/service/*/mapper/*.xml
-  configuration:
-#    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+  #    map-underscore-to-camel-case: true
+  # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 spring:
@@ -14,7 +14,16 @@ spring:
     username: admin
     password: admin123
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+
   # 返回json的全局时间格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+
+#logging:
+#  level:
+#    root: INFO

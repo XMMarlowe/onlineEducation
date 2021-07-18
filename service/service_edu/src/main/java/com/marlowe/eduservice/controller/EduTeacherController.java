@@ -7,6 +7,7 @@ import com.marlowe.commonutils.R;
 import com.marlowe.eduservice.entity.EduTeacher;
 import com.marlowe.eduservice.entity.vo.TeacherQuery;
 import com.marlowe.eduservice.service.EduTeacherService;
+import com.marlowe.servicebase.exceptionhandler.GuliException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

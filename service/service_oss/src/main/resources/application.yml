@@ -1,0 +1,17 @@
+#·þÎñ¶Ë¿Ú
+server:
+  port: 8002
+
+spring:
+  application:
+    name: service-oss
+  profiles:
+    active: dev
+
+aliyun:
+  oss:
+    file:
+      endpoint: oss-cn-beijing.aliyuncs.com
+      keyid: LTAI5tD4S6nub68Jp3xrc5WE
+      keysecret: NvO6hjjJwHK0BsU5EmCCPOBxBP7y0L
+      bucketname: marlowe-education

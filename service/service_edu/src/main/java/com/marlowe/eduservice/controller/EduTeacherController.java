@@ -24,6 +24,7 @@ import java.util.List;
  * @author Marlowe
  * @since 2021-07-16
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/eduservice/teacher")
 @Api(tags = "讲师管理控制器")

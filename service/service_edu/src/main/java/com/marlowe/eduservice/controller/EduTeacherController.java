@@ -74,7 +74,7 @@ public class EduTeacherController {
     @GetMapping("pageTeacher/{pageNo}/{pageSize}")
     public R pageListTeacher(@PathVariable long pageNo, @PathVariable long pageSize) {
 
-        // 创建一个page对线
+        // 创建一个page对象
         Page<EduTeacher> pageTeacher = new Page<>(pageNo, pageSize);
         teacherService.page(pageTeacher, null);
 
@@ -102,15 +102,15 @@ public class EduTeacherController {
 
         // 多条件组合查询
         String name = teacherQuery.getName();
-        Integer level = teacherQuery.getLevel();
+        String career = teacherQuery.getCareer();
         String begin = teacherQuery.getBegin();
         String end = teacherQuery.getEnd();
 
         if (!StringUtils.isEmpty(name)) {
             wrapper.like("name", name);
         }
-        if (!StringUtils.isEmpty(level)) {
-            wrapper.eq("level", level);
+        if (!StringUtils.isEmpty(career)) {
+            wrapper.eq("career", career);
         }
         if (!StringUtils.isEmpty(begin)) {
             wrapper.ge("gmt_create", begin);
@@ -172,5 +172,22 @@ public class EduTeacherController {
             return R.error();
         }
     }
+
+    /**
+     * 查询所有讲师职位
+     *
+     * @return
+     */
+    @ApiOperation("查询所有讲师职位")
+    @GetMapping("allCareers")
+    public R findAllCareer() {
+        QueryWrapper<EduTeacher> wrapper = new QueryWrapper();
+        wrapper.select("distinct career");
+        List<EduTeacher> careers = teacherService.list(wrapper);
+        int total = careers.size();
+        return R.ok().data("total",total).data("careers", careers);
+    }
+
+
 }
 

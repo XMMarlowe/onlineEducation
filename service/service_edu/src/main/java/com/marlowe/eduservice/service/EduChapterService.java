@@ -2,6 +2,9 @@ package com.marlowe.eduservice.service;
 
 import com.marlowe.eduservice.entity.EduChapter;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.marlowe.eduservice.entity.chapter.ChapterVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,19 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduChapterService extends IService<EduChapter> {
 
+    /**
+     * 根据课程id查询课程大纲列表
+     *
+     * @param courseId
+     * @return
+     */
+    List<ChapterVo> getChapterVideoByCourseId(String courseId);
+
+    /**
+     * 删除章节的方法
+     *
+     * @param chapterId
+     * @return
+     */
+    boolean deleteChapter(String chapterId);
 }

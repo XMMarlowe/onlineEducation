@@ -21,7 +21,7 @@ public class TeacherQuery implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "头衔 1高级讲师 2首席讲师")
-    private Integer level;
+    private String career;
 
     /**
      * 注意，这里使用的是String类型，前端传过来的数据无需进行类型转换

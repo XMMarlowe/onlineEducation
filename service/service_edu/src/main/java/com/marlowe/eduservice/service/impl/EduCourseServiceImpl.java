@@ -1,10 +1,8 @@
 package com.marlowe.eduservice.service.impl;
 
-import com.marlowe.commonutils.R;
 import com.marlowe.eduservice.entity.EduCourse;
 import com.marlowe.eduservice.entity.EduCourseDescription;
 import com.marlowe.eduservice.entity.vo.CourseInfoVo;
-import com.marlowe.eduservice.mapper.EduCourseDescriptionMapper;
 import com.marlowe.eduservice.mapper.EduCourseMapper;
 import com.marlowe.eduservice.service.EduCourseDescriptionService;
 import com.marlowe.eduservice.service.EduCourseService;
@@ -13,8 +11,6 @@ import com.marlowe.servicebase.exceptionhandler.GuliException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * <p>

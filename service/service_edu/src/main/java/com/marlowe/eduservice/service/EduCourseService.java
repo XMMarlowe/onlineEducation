@@ -3,6 +3,7 @@ package com.marlowe.eduservice.service;
 import com.marlowe.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.marlowe.eduservice.entity.vo.CourseInfoVo;
+import com.marlowe.eduservice.entity.vo.CoursePublishVo;
 
 /**
  * <p>
@@ -36,4 +37,20 @@ public interface EduCourseService extends IService<EduCourse> {
      * @param courseInfoVo
      */
     void updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    /**
+     * 获得课程发布信息
+     *
+     * @param id
+     * @return
+     */
+    CoursePublishVo publicCourseInfo(String id);
+
+    /**
+     * 删除课程
+     *
+     * @param courseId
+     */
+    void removeCourse(String courseId);
+
 }

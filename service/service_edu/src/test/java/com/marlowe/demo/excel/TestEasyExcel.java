@@ -29,7 +29,6 @@ public class TestEasyExcel {
         EasyExcel.read(filename, DemoDate.class, new ExcelListener()).sheet().doRead();
 
     }
-
     private static List<DemoDate> getData() {
         List<DemoDate> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

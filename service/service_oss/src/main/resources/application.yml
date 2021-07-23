@@ -6,6 +6,11 @@ spring:
     name: service-oss
   profiles:
     active: dev
+  # nacos服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 aliyun:
   oss:

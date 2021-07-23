@@ -2,6 +2,8 @@ package com.marlowe.vod.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @program: education_parent
  * @description:
@@ -16,4 +18,20 @@ public interface VodService {
      * @return
      */
     String uploadVideoAly(MultipartFile file);
+
+    /**
+     * 通过id删除阿里云中的视频
+     *
+     * @param id
+     */
+    void removeAlyVideoById(String id);
+
+    /**
+     * 删除多个阿里云中的视频
+     *
+     * @param videoList
+     */
+    void removeMoreAlyVideo(List videoList);
+
+
 }

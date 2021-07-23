@@ -2,11 +2,14 @@ package com.marlowe.eduservice.controller;
 
 
 import com.marlowe.commonutils.R;
+import com.marlowe.eduservice.client.VodClient;
 import com.marlowe.eduservice.entity.EduVideo;
 import com.marlowe.eduservice.service.EduVideoService;
+import com.marlowe.servicebase.exceptionhandler.GuliException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,6 +29,9 @@ public class EduVideoController {
     @Autowired
     private EduVideoService videoService;
 
+    @Autowired
+    private VodClient vodClient;
+
     /**
      * 添加课程小节
      *
@@ -40,15 +46,28 @@ public class EduVideoController {
     }
 
     /**
-     * 根据id删除课程小节
-     * TODO:后续完善，删除小节的时候，同时把里面的视频删掉
+     * 根据课程小节id删除课程小节
      *
      * @param id
      * @return
      */
-    @ApiOperation("根据id删除课程小节")
+    @ApiOperation("根据课程小节id删除课程小节")
     @DeleteMapping("{id}")
     public R deleteVideo(@PathVariable String id) {
+        // 根据小节id得到视频id
+        EduVideo eduVideo = videoService.getById(id);
+        String videoSourceId = eduVideo.getVideoSourceId();
+
+        // 判断小节里面是否有视频id
+        if (!StringUtils.isEmpty(videoSourceId)) {
+            // 根据视频id，远程调用实现视频删除
+            R result = vodClient.removeAlyVideo(videoSourceId);
+            if (result.getCode() == 20001) {
+                throw new GuliException(20001, "删除视频失败，熔断器...");
+            }
+
+        }
+        // 删除视频小节
         videoService.removeById(id);
         return R.ok();
     }

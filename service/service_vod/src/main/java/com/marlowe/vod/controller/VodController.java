@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @program: education_parent
  * @description:
@@ -43,26 +45,28 @@ public class VodController {
 
     /**
      * 通过id删除阿里云中的视频
-     * TODO: 业务写到service层里面
+     *
      * @param id
      * @return
      */
     @ApiOperation("通过id删除阿里云中的视频")
     @DeleteMapping("removeAlyVideo/{id}")
     public R removeAlyVideo(@PathVariable String id) {
+        vodService.removeAlyVideoById(id);
+        return R.ok();
+    }
 
-        try {
-            DefaultAcsClient client = InitVodClient.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);
-            // 创建删除视频的request对象
-            DeleteVideoRequest request = new DeleteVideoRequest();
-            // 向request设置视频id
-            request.setVideoIds(id);
-            // 调用初始化对象的方法实现删除
-            client.getAcsResponse(request);
-            return R.ok();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new GuliException(20001, "删除视频失败");
-        }
+
+    /**
+     * 删除多个阿里云中的视频
+     *
+     * @param videoList
+     * @return
+     */
+    @ApiOperation("删除多个阿里云中的视频")
+    @DeleteMapping("delete-batch")
+    public R deleteBatch(@RequestParam("videoList") List<String> videoList) {
+        vodService.removeMoreAlyVideo(videoList);
+        return R.ok();
     }
 }

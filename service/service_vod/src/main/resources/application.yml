@@ -1,0 +1,18 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: service-vod
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
+aliyun:
+  vod:
+    file:
+      keyid: LTAI5tD4S6nub68Jp3xrc5WE
+      keysecret: NvO6hjjJwHK0BsU5EmCCPOBxBP7y0L

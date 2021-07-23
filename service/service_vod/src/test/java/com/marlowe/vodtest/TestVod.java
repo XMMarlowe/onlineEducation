@@ -18,7 +18,7 @@ public class TestVod {
         String accessKeyId = "LTAI5tD4S6nub68Jp3xrc5WE";
         String accessKeySecret = "NvO6hjjJwHK0BsU5EmCCPOBxBP7y0L";
         String title = "hello world";
-        String fileName = "D:\\PersonalFiles\\JavaLearnning\\在线教育--谷粒学院\\项目资料\\1-阿里云上传测试视频\\6 - What If I Want to Move Faster.mp4";
+        String fileName = "D:\\BaiduNetdiskDownload\\java后端\\在线教育--谷粒学院\\项目资料\\1-阿里云上传测试视频\\6 - What If I Want to Move Faster.mp4";
 
         //上传视频的方法
         UploadVideoRequest request = new UploadVideoRequest(accessKeyId, accessKeySecret, title, fileName);

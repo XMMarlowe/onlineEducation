@@ -1,0 +1,28 @@
+server:
+  port: 8004
+
+spring:
+  application:
+    name: service-cms
+  profiles:
+    active: dev
+
+  datasource:
+    url: jdbc:mysql://49.234.17.206:3306/tcdb?serverTimezone=GMT%2B8
+    username: admin
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # 返回json的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # nacos服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+
+mybatis-plus:
+  mapper-locations: classpath:com/marlowe/educms/mapper/xml/*.xml

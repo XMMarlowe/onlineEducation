@@ -22,4 +22,15 @@ public class CourseQuery implements Serializable {
 
     @ApiModelProperty(value = "状态 Draft：未发布   Normal：已发布")
     private String status;
+
+    /**
+     * 注意，这里使用的是String类型，前端传过来的数据无需进行类型转换
+     */
+    @ApiModelProperty(value = "查询开始时间", example = "2019-01-01 10:10:10")
+    private String begin;
+
+    @ApiModelProperty(value = "查询结束时间", example = "2019-12-01 10:10:10")
+    private String end;
+
+
 }

@@ -16,7 +16,7 @@ import com.marlowe.servicebase.exceptionhandler.GuliException;
  **/
 public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
 
-    // 因为SubjectExcelListener不能交给Spring容器经常管理，需要自己new，不能注入其他对线
+    // 因为SubjectExcelListener不能交给Spring容器经常管理，需要自己new，不能注入其他对象
     // 不能实现数据库操作
 
     public EduSubjectService eduSubjectService;

@@ -104,6 +104,22 @@ public class EduCourseController {
     }
 
     /**
+     * 取消发布课程，改变status值： Normal-->Draft
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("发布课程，改变status值： Normal-->Draft")
+    @PostMapping("unpublishCourse/{id}")
+    public R unpublishCourse(@PathVariable String id) {
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(id);
+        eduCourse.setStatus("Draft");
+        courseService.updateById(eduCourse);
+        return R.ok();
+    }
+
+    /**
      * 分页查询课程
      *
      * @param pageNo
@@ -120,6 +136,7 @@ public class EduCourseController {
 
         long total = pageCourse.getTotal();
         List<EduCourse> records = pageCourse.getRecords();
+
         return R.ok().data("total", total).data("rows", records);
     }
 
@@ -142,12 +159,20 @@ public class EduCourseController {
         // 多条件组合查询
         String title = courseQuery.getTitle();
         String status = courseQuery.getStatus();
+        String begin = courseQuery.getBegin();
+        String end = courseQuery.getEnd();
 
         if (!StringUtils.isEmpty(title)) {
             wrapper.like("title", title);
         }
         if (!StringUtils.isEmpty(status)) {
             wrapper.eq("status", status);
+        }
+        if (!StringUtils.isEmpty(begin)) {
+            wrapper.ge("gmt_create", begin);
+        }
+        if (!StringUtils.isEmpty(end)) {
+            wrapper.le("gmt_create", end);
         }
 
         courseService.page(pageCourse, wrapper);

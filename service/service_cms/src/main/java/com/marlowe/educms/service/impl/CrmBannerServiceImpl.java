@@ -5,6 +5,7 @@ import com.marlowe.educms.entity.CrmBanner;
 import com.marlowe.educms.mapper.CrmBannerMapper;
 import com.marlowe.educms.service.CrmBannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
      *
      * @return
      */
+    @Cacheable(value = "banner", key = "'selectIndexList'")
     @Override
     public List<CrmBanner> selectAllBanner() {
         // 根据创建时间进行降序排列，显示排列后前两条记录

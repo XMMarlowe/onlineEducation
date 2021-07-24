@@ -1,5 +1,6 @@
 package com.marlowe.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.marlowe.eduservice.entity.EduCourse;
 import com.marlowe.eduservice.entity.EduCourseDescription;
 import com.marlowe.eduservice.entity.vo.CourseInfoVo;
@@ -13,7 +14,10 @@ import com.marlowe.eduservice.service.EduVideoService;
 import com.marlowe.servicebase.exceptionhandler.GuliException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -142,6 +146,21 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (result == 0) {
             throw new GuliException(20001, "删除失败");
         }
+    }
+
+    /**
+     * 查询主页显示的课程
+     *
+     * @return
+     */
+    @Cacheable(value = "courses", key = "'selectCourseList'")
+    @Override
+    public List<EduCourse> findCourses() {
+        QueryWrapper<EduCourse> wrapperCourse = new QueryWrapper<>();
+        wrapperCourse.orderByDesc("gmt_create");
+        wrapperCourse.last("limit 8");
+        List<EduCourse> list = baseMapper.selectList(wrapperCourse);
+        return list;
     }
 
 

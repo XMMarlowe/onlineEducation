@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.marlowe.eduservice.entity.vo.CourseInfoVo;
 import com.marlowe.eduservice.entity.vo.CoursePublishVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务类
@@ -53,4 +55,9 @@ public interface EduCourseService extends IService<EduCourse> {
      */
     void removeCourse(String courseId);
 
+    /**
+     * 查询主页显示的课程
+     * @return
+     */
+    List<EduCourse> findCourses();
 }

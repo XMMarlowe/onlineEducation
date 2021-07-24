@@ -44,17 +44,12 @@ public class IndexFrontController {
     @ApiOperation("查询8条热门课程，4个名师")
     @GetMapping("index")
     public R index() {
-        // 查询8条热门课程
-        QueryWrapper<EduCourse> wrapperCourse = new QueryWrapper<>();
-        wrapperCourse.orderByDesc("gmt_create");
-        wrapperCourse.last("limit 8");
-        List<EduCourse> courseList = courseService.list(wrapperCourse);
 
-        // 4条名师
-        QueryWrapper<EduTeacher> wrapperTeacher = new QueryWrapper<>();
-        wrapperTeacher.orderByDesc("gmt_create");
-        wrapperTeacher.last("limit 4");
-        List<EduTeacher> teacherList = teacherService.list(wrapperTeacher);
+        // 查询8条热门课程
+        List<EduCourse> courseList = courseService.findCourses();
+
+        // 4个名师
+        List<EduTeacher> teacherList = teacherService.findTeachers();
 
         return R.ok().data("courseList", courseList).data("teacherList", teacherList);
     }

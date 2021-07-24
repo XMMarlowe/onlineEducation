@@ -3,6 +3,8 @@ package com.marlowe.eduservice.service;
 import com.marlowe.eduservice.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 讲师 服务类
@@ -13,4 +15,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface EduTeacherService extends IService<EduTeacher> {
 
+    /**
+     * 查询主页显示的名师
+     * @return
+     */
+    List<EduTeacher> findTeachers();
 }

@@ -13,6 +13,18 @@ spring:
     password: admin123
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 1
+        max-idle: 5
+        min-idle: 0
+
   # 返回json的全局时间格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -22,7 +34,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-
 
 mybatis-plus:
   mapper-locations: classpath:com/marlowe/educms/mapper/xml/*.xml

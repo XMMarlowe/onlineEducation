@@ -99,12 +99,14 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
         wrapper.eq("chapter_id", chapterId);
         int count = videoService.count(wrapper);
-        if (count > 0) {
-            throw new GuliException(20001, "不能删除");
-        } else {
-            int result = baseMapper.deleteById(chapterId);
-            return result > 0;
-        }
+//        if (count > 0) {
+//            throw new GuliException(20001, "不能删除");
+//        } else {
+//            int result = baseMapper.deleteById(chapterId);
+//            return result > 0;
+//        }
+        int result = baseMapper.deleteById(chapterId);
+        return result > 0;
     }
 
     /**

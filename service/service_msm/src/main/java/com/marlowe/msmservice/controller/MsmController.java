@@ -51,7 +51,7 @@ public class MsmController {
         // 调用service发送短信的方法
         boolean isSend = msmService.send(code, phone);
         if (isSend) {
-            // 发送成功，把发送成功验证码放到redis中，并设置有效时间
+            // 发送成功，把发送成功验证码放到redis中，并设置有效时间为5min
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
             return R.ok();
         }

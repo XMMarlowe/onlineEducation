@@ -26,4 +26,10 @@ public class VideoVo {
 
     @ApiModelProperty(value = "原始文件名称")
     private String videoOriginalName;
+
+    @ApiModelProperty(value = "视频时长（秒）")
+    private Float duration;
+
+    @ApiModelProperty(value = "视频源文件大小（字节）")
+    private Long size;
 }

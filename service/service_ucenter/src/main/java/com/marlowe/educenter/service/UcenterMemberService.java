@@ -2,6 +2,8 @@ package com.marlowe.educenter.service;
 
 import com.marlowe.educenter.entity.UcenterMember;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.marlowe.educenter.entity.vo.LoginVo;
+import com.marlowe.educenter.entity.vo.RegisterVo;
 
 /**
  * <p>
@@ -13,4 +15,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UcenterMemberService extends IService<UcenterMember> {
 
+    /**
+     * 登录
+     *
+     * @param member
+     * @return
+     */
+    String login(LoginVo member);
+
+    /**
+     * 注册
+     *
+     * @param registerVo
+     */
+    void register(RegisterVo registerVo);
 }

@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
  **/
 @SpringBootApplication
 @ComponentScan({"com.marlowe"})
-@MapperScan("com.marlowe.educenter.mapper")
 public class UcenterApplication {
     public static void main(String[] args) {
         SpringApplication.run(UcenterApplication.class, args);

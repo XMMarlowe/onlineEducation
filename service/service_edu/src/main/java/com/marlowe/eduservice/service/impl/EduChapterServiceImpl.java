@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,11 +45,13 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
 
         // 1. 根据课程id查询课程里面所有的章节
         QueryWrapper<EduChapter> wrapperChapter = new QueryWrapper<>();
+        wrapperChapter.orderByAsc("sort");
         wrapperChapter.eq("course_id", courseId);
         List<EduChapter> eduChapterList = baseMapper.selectList(wrapperChapter);
 
         // 2. 根据课程id查询课程里面所有的小节
         QueryWrapper<EduVideo> wrapperVideo = new QueryWrapper<>();
+        wrapperVideo.orderByAsc("sort");
         wrapperVideo.eq("course_id", courseId);
         List<EduVideo> eduVideoList = videoService.list(wrapperVideo);
 
@@ -77,6 +80,7 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
                     videoList.add(videoVo);
                 }
             }
+
             // 把封装之后的小节list集合，放到章节对象里面
             chapterVo.setChildren(videoList);
         }

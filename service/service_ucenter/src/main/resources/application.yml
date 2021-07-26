@@ -1,9 +1,14 @@
 server:
-  port: 8004
+  port: 8006
+
+mybatis-plus:
+  mapper-locations: classpath:com/marlowe/educenter/mapper/xml/*.xml
+
 
 spring:
   application:
-    name: service-cms
+    name: service-ucenter
+
   profiles:
     active: dev
 
@@ -13,6 +18,10 @@ spring:
     password: admin123
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
   redis:
     host: 47.117.114.2
     port: 6379
@@ -25,15 +34,7 @@ spring:
         max-idle: 5
         min-idle: 0
 
-  # 返回json的全局时间格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  # nacos服务地址
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
 
-mybatis-plus:
-  mapper-locations: classpath:com/marlowe/educms/mapper/xml/*.xml

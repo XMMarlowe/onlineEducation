@@ -16,7 +16,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   redis:
-    host: 127.0.0.1
+    host: 47.117.114.2
     port: 6379
     database: 0
     timeout: 1800000

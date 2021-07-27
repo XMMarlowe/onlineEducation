@@ -43,30 +43,30 @@ public class CourseFrontController {
         QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
         // 判断条件值是否为空，不为空拼接
         // 一二级分类排序
-        if (!StringUtils.isEmpty(courseFrontVo.getSubjectParentId())){
-            wrapper.eq("subject_parent_id",courseFrontVo.getSubjectParentId());
+        if (!StringUtils.isEmpty(courseFrontVo.getSubjectParentId())) {
+            wrapper.eq("subject_parent_id", courseFrontVo.getSubjectParentId());
             if (!StringUtils.isEmpty(courseFrontVo.getSubjectId())) {
                 wrapper.eq("subject_id", courseFrontVo.getSubjectId());
             }
         }
 
         // 销量排序
-        if (!StringUtils.isEmpty(courseFrontVo.getBuyCountSort()) && "0".equals(courseFrontVo.getBuyCountSort())) {
-            wrapper.orderByDesc("buy_count", courseFrontVo.getBuyCountSort());
-        }else{
-            wrapper.orderByAsc("buy_count", courseFrontVo.getBuyCountSort());
+        if (!StringUtils.isEmpty(courseFrontVo.getBuyCountSort())) {
+            wrapper.orderByDesc("buy_count");
+        }else {
+            wrapper.orderByAsc("buy_count");
         }
 
-        if (!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort()) && "0".equals(courseFrontVo.getGmtCreateSort()) ) {
-            wrapper.orderByDesc("gmt_create", courseFrontVo.getGmtCreateSort());
+        if (!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort())) {
+            wrapper.orderByDesc("gmt_create");
         }else {
-            wrapper.orderByAsc("gmt_create", courseFrontVo.getGmtCreateSort());
+            wrapper.orderByAsc("gmt_create");
         }
 
-        if (!StringUtils.isEmpty(courseFrontVo.getPriceSort()) && "0".equals(courseFrontVo.getPriceSort())) {
-            wrapper.orderByDesc("price", courseFrontVo.getPriceSort());
+        if (!StringUtils.isEmpty(courseFrontVo.getPriceSort())) {
+            wrapper.orderByDesc("price");
         }else {
-            wrapper.orderByAsc("price", courseFrontVo.getPriceSort());
+            wrapper.orderByAsc("price");
         }
 
         courseService.page(pageCourse, wrapper);

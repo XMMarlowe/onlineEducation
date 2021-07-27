@@ -5,7 +5,8 @@ mybatis-plus:
   mapper-locations: classpath:com/marlowe/eduservice/mapper/xml/*.xml
   #  configuration:
   #    map-underscore-to-camel-case: true
-  # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 spring:

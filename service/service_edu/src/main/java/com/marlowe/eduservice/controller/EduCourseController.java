@@ -150,7 +150,7 @@ public class EduCourseController {
     @ApiOperation("带条件的分页查询")
     @PostMapping("pageCourseCondition/{pageNo}/{pageSize}")
     public R pageCourseCondition(@PathVariable long pageNo, @PathVariable long pageSize, @RequestBody(required = false) CourseQuery courseQuery) {
-        // 创建一个page对线
+        // 创建一个page对象
         Page<EduCourse> pageCourse = new Page<>(pageNo, pageSize);
 
         // 构造条件

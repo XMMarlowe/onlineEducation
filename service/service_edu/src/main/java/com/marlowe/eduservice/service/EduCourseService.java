@@ -57,7 +57,11 @@ public interface EduCourseService extends IService<EduCourse> {
 
     /**
      * 查询主页显示的课程
+     *
      * @return
      */
     List<EduCourse> findCourses();
+
+
+
 }

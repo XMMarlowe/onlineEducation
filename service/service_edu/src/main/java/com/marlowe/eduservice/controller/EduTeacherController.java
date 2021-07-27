@@ -4,8 +4,10 @@ package com.marlowe.eduservice.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.marlowe.commonutils.R;
+import com.marlowe.eduservice.entity.EduCourse;
 import com.marlowe.eduservice.entity.EduTeacher;
 import com.marlowe.eduservice.entity.vo.TeacherQuery;
+import com.marlowe.eduservice.service.EduCourseService;
 import com.marlowe.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +33,9 @@ public class EduTeacherController {
 
     @Autowired
     private EduTeacherService teacherService;
+
+    @Autowired
+    private EduCourseService courseService;
 
     /**
      * 查询所有讲师
@@ -93,7 +98,7 @@ public class EduTeacherController {
     @ApiOperation("带条件的分页查询")
     @PostMapping("pageTeacherCondition/{pageNo}/{pageSize}")
     public R pageTeacherCondition(@PathVariable long pageNo, @PathVariable long pageSize, @RequestBody(required = false) TeacherQuery teacherQuery) {
-        // 创建一个page对线
+        // 创建一个page对象
         Page<EduTeacher> pageTeacher = new Page<>(pageNo, pageSize);
 
         // 构造条件
@@ -143,16 +148,30 @@ public class EduTeacherController {
     }
 
     /**
-     * 根据id查询讲师
+     * 根据id查询讲师基本信息
      *
      * @param id
      * @return
      */
-    @ApiOperation("根据id查询讲师")
+    @ApiOperation("根据id查询讲师基本信息")
     @GetMapping("getTeacher/{id}")
     public R getTeacher(@PathVariable String id) {
         EduTeacher eduTeacher = teacherService.getById(id);
         return R.ok().data("teacher", eduTeacher);
+    }
+
+    /**
+     * 根据讲师id查询讲师的全部课程
+     *
+     * @return
+     */
+    @ApiOperation("根据讲师id查询讲师的全部课程")
+    @GetMapping("getTeacherCourse/{id}")
+    public R getTeacherCourse(@PathVariable String id) {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.eq("teacher_id", id);
+        List<EduCourse> courseList = courseService.list(wrapper);
+        return R.ok().data("courseList", courseList);
     }
 
     /**
@@ -184,7 +203,7 @@ public class EduTeacherController {
         wrapper.select("distinct career");
         List<EduTeacher> careers = teacherService.list(wrapper);
         int total = careers.size();
-        return R.ok().data("total",total).data("careers", careers);
+        return R.ok().data("total", total).data("careers", careers);
     }
 
 

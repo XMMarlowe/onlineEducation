@@ -5,6 +5,7 @@ import com.marlowe.eduservice.entity.EduCourse;
 import com.marlowe.eduservice.entity.EduCourseDescription;
 import com.marlowe.eduservice.entity.vo.CourseInfoVo;
 import com.marlowe.eduservice.entity.vo.CoursePublishVo;
+import com.marlowe.eduservice.entity.vo.CourseWebVo;
 import com.marlowe.eduservice.mapper.EduCourseMapper;
 import com.marlowe.eduservice.service.EduChapterService;
 import com.marlowe.eduservice.service.EduCourseDescriptionService;
@@ -161,6 +162,17 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         wrapperCourse.last("limit 8");
         List<EduCourse> list = baseMapper.selectList(wrapperCourse);
         return list;
+    }
+
+    /**
+     * 根据课程id，查询课程基本信息
+     *
+     * @param courseId
+     * @return
+     */
+    @Override
+    public CourseWebVo getBaseCourseInfo(String courseId) {
+        return baseMapper.getBaseCourseInfo(courseId);
     }
 
 

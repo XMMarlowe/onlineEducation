@@ -3,6 +3,7 @@ package com.marlowe.eduservice.mapper;
 import com.marlowe.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.marlowe.eduservice.entity.vo.CoursePublishVo;
+import com.marlowe.eduservice.entity.vo.CourseWebVo;
 
 /**
  * <p>
@@ -21,4 +22,13 @@ public interface EduCourseMapper extends BaseMapper<EduCourse> {
      * @return
      */
     public CoursePublishVo getPublishCourseInfo(String courseId);
+
+    /**
+     * 根据课程id，查询课程基本信息
+     *
+     * @param courseId
+     * @return
+     */
+    CourseWebVo getBaseCourseInfo(String courseId);
+
 }

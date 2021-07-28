@@ -4,6 +4,7 @@ import com.marlowe.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.marlowe.eduservice.entity.vo.CourseInfoVo;
 import com.marlowe.eduservice.entity.vo.CoursePublishVo;
+import com.marlowe.eduservice.entity.vo.CourseWebVo;
 
 import java.util.List;
 
@@ -63,5 +64,12 @@ public interface EduCourseService extends IService<EduCourse> {
     List<EduCourse> findCourses();
 
 
+    /**
+     * 根据课程id，查询课程基本信息
+     *
+     * @param courseId
+     * @return
+     */
+    CourseWebVo getBaseCourseInfo(String courseId);
 
 }

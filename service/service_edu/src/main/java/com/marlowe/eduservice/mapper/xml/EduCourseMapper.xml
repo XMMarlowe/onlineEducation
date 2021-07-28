@@ -3,16 +3,44 @@
 <mapper namespace="com.marlowe.eduservice.mapper.EduCourseMapper">
 
     <select id="getPublishCourseInfo" resultType="com.marlowe.eduservice.entity.vo.CoursePublishVo">
-        SELECT ec.id,ec.title,ec.price,ec.lesson_num as lessonNum, ec.cover,
-               et.name as teacherName,
-               es1.title as subjectLevelOne,
-               es2.title as subjectLevelTwo
-        FROM
-                edu_course ec left outer join edu_course_description ecd on ec.id=ecd.id
-                              left outer join edu_teacher et on ec.teacher_id = et.id
-                              left outer join edu_subject es1 on ec.subject_parent_id = es1.id
-                              left outer join edu_subject es2 on ec.subject_id = es2.id
+        SELECT ec.id,
+               ec.title,
+               ec.price,
+               ec.lesson_num as lessonNum,
+               ec.cover,
+               et.name       as teacherName,
+               es1.title     as subjectLevelOne,
+               es2.title     as subjectLevelTwo
+        FROM edu_course ec
+                 left outer join edu_course_description ecd on ec.id = ecd.id
+                 left outer join edu_teacher et on ec.teacher_id = et.id
+                 left outer join edu_subject es1 on ec.subject_parent_id = es1.id
+                 left outer join edu_subject es2 on ec.subject_id = es2.id
         where ec.id = #{courseId}
 
+    </select>
+    <select id="getBaseCourseInfo" resultType="com.marlowe.eduservice.entity.vo.CourseWebVo">
+        SELECT ec.id,
+               ec.title,
+               ec.price,
+               ec.lesson_num as lessonNum,
+               ec.cover,
+               ec.buy_count  as buyCount,
+               ec.view_count as view_count,
+               ecd.description,
+               et.id         as teacherId,
+               et.name       as teacherName,
+               et.intro,
+               et.avatar,
+               es1.id        as subjectLevelOneId,
+               es1.title     as subjectLevelOne,
+               es2.id        as subjectLevelTwoId,
+               es2.title     as subjectLevelTwo
+        FROM edu_course ec
+                 left outer join edu_course_description ecd on ec.id = ecd.id
+                 left outer join edu_teacher et on ec.teacher_id = et.id
+                 left outer join edu_subject es1 on ec.subject_parent_id = es1.id
+                 left outer join edu_subject es2 on ec.subject_id = es2.id
+        where ec.id = #{courseId}
     </select>
 </mapper>

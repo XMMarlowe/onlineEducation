@@ -26,7 +26,7 @@ public class CodeGenerator {
         // 2、全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir("D:\\IDE_Project\\JavaLearning\\education_parent\\service\\service_order" + "/src/main/java");
+        gc.setOutputDir("D:\\JavaProjects\\onlineEducation\\service\\service_order" + "/src/main/java");
         gc.setAuthor("Marlowe");
         gc.setOpen(false); //生成后是否打开资源管理器
         gc.setFileOverride(false); //重新生成时文件是否覆盖
@@ -48,8 +48,8 @@ public class CodeGenerator {
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("eduorder"); //模块名
         pc.setParent("com.marlowe");
+        pc.setModuleName("eduorder"); //模块名
         pc.setController("controller");
         pc.setEntity("entity");
         pc.setService("service");

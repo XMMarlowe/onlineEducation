@@ -1,9 +1,11 @@
 package com.marlowe.eduorder;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * @program: onlineEducation
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author: Marlowe
  * @create: 2021-07-28 18:16
  **/
-@SpringBootApplication
+@EnableFeignClients
+@EnableDiscoveryClient // Nacos注册
 @ComponentScan(basePackages = {"com.marlowe"})
-@CrossOrigin
+@SpringBootApplication
+@MapperScan("com.marlowe.eduorder.mapper")
 public class OrdersApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OrdersApplication.class);
+        SpringApplication.run(OrdersApplication.class,args);
     }
 }

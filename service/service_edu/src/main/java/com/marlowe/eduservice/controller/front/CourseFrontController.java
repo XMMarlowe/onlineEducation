@@ -3,6 +3,7 @@ package com.marlowe.eduservice.controller.front;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.marlowe.commonutils.R;
+import com.marlowe.commonutils.ordervo.CourseWebVoOrder;
 import com.marlowe.eduservice.entity.EduCourse;
 import com.marlowe.eduservice.entity.chapter.ChapterVo;
 import com.marlowe.eduservice.entity.frontvo.CourseFrontVo;
@@ -11,6 +12,7 @@ import com.marlowe.eduservice.service.EduChapterService;
 import com.marlowe.eduservice.service.EduCourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.util.StringUtils;
@@ -98,6 +100,21 @@ public class CourseFrontController {
         // 根据课程id查询章节和小节
         List<ChapterVo> chapterVideoList = chapterService.getChapterVideoByCourseId(courseId);
         return R.ok().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList);
+    }
+
+    /**
+     * 订单模块远程调用：根据课程id查询课程信息
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("订单模块远程调用：根据课程id查询课程信息")
+    @PostMapping("getCourseInfoOrder/{id}")
+    public CourseWebVoOrder getCourseInfoOrder(@PathVariable String id) {
+        CourseWebVo courseInfo = courseService.getBaseCourseInfo(id);
+        CourseWebVoOrder courseWebVoOrder = new CourseWebVoOrder();
+        BeanUtils.copyProperties(courseInfo, courseWebVoOrder);
+        return courseWebVoOrder;
     }
 
 }

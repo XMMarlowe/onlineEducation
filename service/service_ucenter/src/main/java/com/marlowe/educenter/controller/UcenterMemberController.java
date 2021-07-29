@@ -3,12 +3,14 @@ package com.marlowe.educenter.controller;
 
 import com.marlowe.commonutils.JwtUtils;
 import com.marlowe.commonutils.R;
+import com.marlowe.commonutils.ordervo.UcenterMemberOrder;
 import com.marlowe.educenter.entity.UcenterMember;
 import com.marlowe.educenter.entity.vo.LoginVo;
 import com.marlowe.educenter.entity.vo.RegisterVo;
 import com.marlowe.educenter.service.UcenterMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,6 +74,21 @@ public class UcenterMemberController {
         // 查询数据库，根据用户id获取用户信息
         UcenterMember member = memberService.getById(memberId);
         return R.ok().data("userInfo", member);
+    }
+    /**
+     * 订单模块远程调用：根据用户id获取用户信息
+     *
+     * @param id
+     * @return
+     */
+    @ApiOperation("订单模块远程调用：根据用户id获取用户信息")
+    @PostMapping("getUserInfoOrder/{id}")
+    public UcenterMemberOrder getUserInfoOrder(@PathVariable String id) {
+        UcenterMember member = memberService.getById(id);
+        // 把member对象里面的值复制给UcenterMemberOrder
+        UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
+        BeanUtils.copyProperties(member, ucenterMemberOrder);
+        return ucenterMemberOrder;
     }
 }
 

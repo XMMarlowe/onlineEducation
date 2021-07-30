@@ -32,4 +32,7 @@ public class CourseFrontVo {
 
     @ApiModelProperty(value = "价格排序")
     private String priceSort;
+
+    @ApiModelProperty(value = "价格")
+    private String price;
 }

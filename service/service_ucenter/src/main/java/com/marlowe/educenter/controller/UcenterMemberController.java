@@ -75,6 +75,7 @@ public class UcenterMemberController {
         UcenterMember member = memberService.getById(memberId);
         return R.ok().data("userInfo", member);
     }
+
     /**
      * 订单模块远程调用：根据用户id获取用户信息
      *
@@ -89,6 +90,18 @@ public class UcenterMemberController {
         UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
         BeanUtils.copyProperties(member, ucenterMemberOrder);
         return ucenterMemberOrder;
+    }
+
+    /**
+     * 查询某一天注册的人数
+     * @param day
+     * @return
+     */
+    @ApiOperation("查询某一天注册的人数")
+    @GetMapping("countRegister/{day}")
+    public R countRegister(@PathVariable String day) {
+        Integer count = memberService.countRegisterDay(day);
+        return R.ok().data("countRegister", count);
     }
 }
 

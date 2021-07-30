@@ -112,4 +112,15 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         member.setAvatar("https://cdn.jsdelivr.net/gh/moonoonoom/CDN@0.3.1/images/MarloweAvatar.jpg");
         baseMapper.insert(member);
     }
+
+    /**
+     * 查询某一天注册的人数
+     *
+     * @param day
+     * @return
+     */
+    @Override
+    public Integer countRegisterDay(String day) {
+        return baseMapper.countRegisterDay(day);
+    }
 }

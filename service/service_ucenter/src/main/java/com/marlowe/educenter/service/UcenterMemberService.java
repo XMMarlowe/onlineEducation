@@ -29,4 +29,13 @@ public interface UcenterMemberService extends IService<UcenterMember> {
      * @param registerVo
      */
     void register(RegisterVo registerVo);
+
+    /**
+     * 查询某一天注册的人数
+     *
+     * @param day
+     * @return
+     */
+    Integer countRegisterDay(String day);
+
 }

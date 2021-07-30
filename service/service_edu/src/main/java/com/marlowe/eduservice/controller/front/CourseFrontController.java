@@ -69,20 +69,23 @@ public class CourseFrontController {
         // 销量排序
         if (!StringUtils.isEmpty(courseFrontVo.getBuyCountSort())) {
             wrapper.orderByDesc("buy_count");
-        } else {
-            wrapper.orderByAsc("buy_count");
         }
 
         if (!StringUtils.isEmpty(courseFrontVo.getGmtCreateSort())) {
             wrapper.orderByDesc("gmt_create");
-        } else {
-            wrapper.orderByAsc("gmt_create");
         }
 
         if (!StringUtils.isEmpty(courseFrontVo.getPriceSort())) {
             wrapper.orderByDesc("price");
-        } else {
-            wrapper.orderByAsc("price");
+        }
+
+        if (!StringUtils.isEmpty(courseFrontVo.getPrice())) {
+            // 0：免费 1：收费 没有值：查询全部
+            if ("0".equals(courseFrontVo.getPrice())) {
+                wrapper.eq("price", 0);
+            } else if ("1".equals(courseFrontVo.getPrice())) {
+                wrapper.gt("price", 0);
+            }
         }
 
         courseService.page(pageCourse, wrapper);
@@ -108,7 +111,7 @@ public class CourseFrontController {
 
         // 根据课程id和用户id查询当前课程是否已经支付过了
         boolean buyCourse = ordersClient.isBuyCourse(courseId, JwtUtils.getMemberIdByJwtToken(request));
-        return R.ok().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList).data("isBuy",buyCourse);
+        return R.ok().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList).data("isBuy", buyCourse);
     }
 
     /**

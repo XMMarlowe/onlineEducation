@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.marlowe.educenter.mapper.UcenterMemberMapper">
 
+    <select id="countRegisterDay" resultType="java.lang.Integer">
+        select count(*)
+        from ucenter_member uc
+        where DATE (uc.gmt_create) = #{day}
+    </select>
 </mapper>

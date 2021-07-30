@@ -129,4 +129,27 @@ public class CourseFrontController {
         return courseWebVoOrder;
     }
 
+    /**
+     * 根据课程名称或者描述分页查询课程信息
+     * @param keyWord
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @ApiOperation("根据课程名称或者描述分页查询课程信息")
+    @GetMapping("getFrontCourseList/descOrTitle/{keyWord}/{pageNo}/{pageSize}")
+    public R getFrontCourseList(@PathVariable String keyWord, @PathVariable long pageNo, @PathVariable long pageSize) {
+        // 创建一个page对象
+        Page<EduCourse> pageCourse = new Page<>(pageNo, pageSize);
+
+        // 构造条件
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+
+        wrapper.like("title", keyWord).or().like("description", keyWord);
+        courseService.page(pageCourse, wrapper);
+
+        long total = pageCourse.getTotal();
+        List<EduCourse> records = pageCourse.getRecords();
+        return R.ok().data("total", total).data("rows", records);
+    }
 }

@@ -11,6 +11,11 @@ import org.apache.commons.lang3.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 网站统计日数据 服务实现类
@@ -52,5 +57,57 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
         sta.setCourseNum(RandomUtils.nextInt(100, 200));
 
         baseMapper.insert(sta);
+    }
+
+    /**
+     * 图表显示，返回两部分数据，日期json数组，数量json数组
+     *
+     * @param type
+     * @param begin
+     * @param end
+     * @return
+     */
+    @Override
+    public Map<String, Object> getShowData(String type, String begin, String end) {
+        QueryWrapper<StatisticsDaily> wrapper = new QueryWrapper();
+        wrapper.between("date_calculated", begin, end);
+        // 根据具体类型查询人数
+        wrapper.select("date_calculated", type);
+        List<StatisticsDaily> staList = baseMapper.selectList(wrapper);
+
+        // 分别封装日期和时间
+        List<String> dateList = new ArrayList<>();
+        List<Integer> numList = new ArrayList<>();
+
+        for (StatisticsDaily daily : staList) {
+            dateList.add(daily.getDateCalculated());
+            // 判断具体封装哪个数据
+            switch (type) {
+                case "login_num": {
+
+                    numList.add(daily.getLoginNum());
+                    break;
+                }
+                case "register_num": {
+                    numList.add(daily.getRegisterNum());
+                    break;
+                }
+                case "video_view_num": {
+                    numList.add(daily.getVideoViewNum());
+                    break;
+                }
+                case "course_num": {
+                    numList.add(daily.getCourseNum());
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("dateList", dateList);
+        map.put("numList", numList);
+        return map;
     }
 }

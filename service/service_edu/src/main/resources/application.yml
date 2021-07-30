@@ -1,7 +1,58 @@
+server:
+  port: 8001
+
+mybatis-plus:
+  mapper-locations: classpath:com/marlowe/eduservice/mapper/xml/*.xml
+  #  configuration:
+  #    map-underscore-to-camel-case: true
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 spring:
   application:
     name: service-edu
+
   profiles:
     active: dev
 
+  datasource:
+    url: jdbc:mysql://49.234.17.206:3306/tcdb?serverTimezone=GMT%2B8
+    username: admin
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    host: 47.117.114.2
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 1
+        max-idle: 5
+        min-idle: 0
+
+  # 返回json的全局时间格式
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  # nacos服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# 开启熔断机制
+feign:
+  hystrix:
+    enabled: true
+
+# 设置hystrix超时时间，默认1000ms
+hystrix:
+  commond:
+    default:
+      execution:
+        isolation:
+          timeoutInMilliseconds: 6000
 

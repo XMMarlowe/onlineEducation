@@ -1,0 +1,42 @@
+server:
+  port: 8009
+
+mybatis-plus:
+  mapper-locations: classpath:com/marlowe/aclservice/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+spring:
+  application:
+    name: service-acl
+
+  profiles:
+    active: dev
+
+  datasource:
+    url: jdbc:mysql://49.234.17.206:3306/tcdb?serverTimezone=GMT%2B8
+    username: admin
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  redis:
+    host: 47.117.114.2
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 1
+        max-idle: 5
+        min-idle: 0
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+

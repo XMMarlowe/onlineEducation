@@ -12,8 +12,8 @@
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>service_base</module>
         <module>common_utils</module>
+        <module>service_base</module>
         <module>spring_security</module>
     </modules>
 
@@ -59,4 +59,22 @@
             <version>2.6.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>original</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

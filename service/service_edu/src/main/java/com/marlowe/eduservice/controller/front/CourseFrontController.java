@@ -32,7 +32,7 @@ import java.util.List;
 @Api(tags = "课程前台控制器")
 @RestController
 @RequestMapping("/eduservice/coursefront")
-@CrossOrigin
+//@CrossOrigin
 public class CourseFrontController {
 
     @Autowired

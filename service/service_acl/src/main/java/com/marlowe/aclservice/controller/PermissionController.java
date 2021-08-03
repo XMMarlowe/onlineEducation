@@ -23,7 +23,7 @@ import java.util.List;
 @Api(tags = "权限管理控制器")
 @RestController
 @RequestMapping("/admin/acl/permission")
-@CrossOrigin
+//@CrossOrigin
 public class PermissionController {
 
     @Autowired

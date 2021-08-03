@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @author: Marlowe
  * @create: 2021-07-18 09:57
  **/
-@CrossOrigin
+//@CrossOrigin
 @Api(tags = "登录控制器")
 @RestController
 @RequestMapping("/eduservice/user")

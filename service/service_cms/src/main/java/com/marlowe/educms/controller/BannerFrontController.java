@@ -26,7 +26,7 @@ import java.util.List;
 @Api(tags = "banner前台控制器")
 @RestController
 @RequestMapping("/educms/bannerfront")
-@CrossOrigin
+//@CrossOrigin
 public class BannerFrontController {
 
 

@@ -24,7 +24,7 @@ import java.util.List;
 @Api(tags = "课程大纲管理控制器")
 @RestController
 @RequestMapping("/eduservice/chapter")
-@CrossOrigin
+//@CrossOrigin
 public class EduChapterController {
 
     @Autowired

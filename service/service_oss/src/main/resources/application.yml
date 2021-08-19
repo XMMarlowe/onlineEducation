@@ -15,7 +15,7 @@ spring:
 aliyun:
   oss:
     file:
-      endpoint: oss-cn-beijing.aliyuncs.com
-      keyid: LTAI5tD4S6nub68Jp3xrc5WE
-      keysecret: NvO6hjjJwHK0BsU5EmCCPOBxBP7y0L
-      bucketname: marlowe-education
+      endpoint: # your endpoint
+      keyid: # your keyid
+      keysecret: # your keysecret
+      bucketname: # your bucketname
